@@ -28,7 +28,7 @@ Quickstart: Run the demo
     git clone https://github.com/cumulusnetworks/cldemo-config-routing
     cd cldemo-config-routing
     sudo ln -s  /home/cumulus/cldemo-config-routing /var/www/cldemo-config-routing
-    python pushconfig.py bgp-unnumbered leaf01,leaf02,spine01,spine02,server01,server02
+    python pushconfig.py bgp-unnumbered
     ssh server01
     ping 172.16.2.101
 
@@ -117,7 +117,7 @@ Using a routing protocol such as BGP or OSPF means that as long as one spine is 
     sudo su - cumulus
     ssh server01
     ping 172.16.2.101
-    
+
 *In terminal 3*
 
     vagrant destroy -f spine01
