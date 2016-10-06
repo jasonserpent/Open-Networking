@@ -50,7 +50,17 @@ if __name__ == "__main__":
         demo = sys.argv[1]
         hostnames = ["leaf01", "leaf02", "leaf03", "leaf04", "spine01", "spine02", "server01", "server02"]
     except:
-        print("Usage: pushconfig.py [demo]")
+        print("Please specify the routing demo to use. One of: \n" +
+              "   bgp-numbered \n" +
+              "   bgp-numbered-ipv6 \n" +
+              "   bgp-unnumbered \n" +
+              "   bgp-unnumbered-ipv6 \n" +
+              "   ospf-numbered \n" +
+              "   ospf-numbered-ipv6 \n" +
+              "   ospf-unnumbered \n" +
+              "   ospf-unnumbered-ipv6 \n\n" +
+              "Example usage:\n" +
+              "python pushconfig.py bgp-numbered")
         sys.exit(-1)
 
     processes = []
