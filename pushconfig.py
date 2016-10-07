@@ -14,7 +14,11 @@ def go(host, demo):
     url = "http://oob-mgmt-server.lab.local/cldemo-config-routing/%s/"%demo
     expect = paramiko.SSHClient()
     expect.set_missing_host_key_policy(paramiko.AutoAddPolicy())
-    expect.connect(host, username="cumulus", password="CumulusLinux!")
+    try:
+        expect.connect(host, username="cumulus", password="CumulusLinux!")
+    except:
+        print "Paramiko Error, is " + host + " reachable?"
+        expect.close()
     commands = []
     if "server" in host:
         commands =  ['sudo wget %s/%s/interfaces'%(url, host),
@@ -48,7 +52,10 @@ def go(host, demo):
 if __name__ == "__main__":
     try:
         demo = sys.argv[1]
-        hostnames = ["leaf01", "leaf02", "leaf03", "leaf04", "spine01", "spine02", "server01", "server02"]
+        if len(sys.argv[2]) < 2:
+            hostnames = ["leaf01", "leaf02", "leaf03", "leaf04", "spine01", "spine02", "server01", "server02"]
+        else:
+            hostnames = sys.argv[2].split(',')
     except:
         print("Please specify the routing demo to use. One of: \n" +
               "   bgp-numbered \n" +
