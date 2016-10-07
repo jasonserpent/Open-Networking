@@ -33,7 +33,6 @@ Quickstart: Run the demo
     ping 172.16.2.101
 
 
-
 Using the Helper Script
 -----------------------
 The `push-config.py` helper script deploys the configuration to the in-band network by downloading the files from the out-of-band management server. This requires a web server to be installed on the out-of-band server and passwordless login and sudo to be enabled on the in-band devices, both of which are done for you if you used [cldemo-vagrant](http://github.com/cumulusnetworks/cldemo-vagrant) to provision your topology. The demo repository needs to be linked in the management server's `/var/www/` directory:
@@ -46,7 +45,7 @@ The `push-config.py` helper script deploys the configuration to the in-band netw
 
 After setting up the repo, you can now use `push-config.py`! This script will log in to each device, download the files, and reboot the device.
 
-    python pushconfig.py <demo_name> leaf01,leaf02,spine01,spine02,server01,server02
+    python pushconfig.py <demo_name>
 
 
 Verifying Routing
@@ -69,11 +68,11 @@ Running the demo is easiest with two terminal windows open. One window will log 
 
 *In terminal 1*
 
-    python pushconfig.py ospf-unnumbered leaf01,leaf02,spine01,spine02
+    python pushconfig.py ospf-unnumbered
     # wait and watch connectivity drop and then come back
-    python pushconfig.py bgp-numbered leaf01,leaf02,spine01,spine02
+    python pushconfig.py bgp-numbered
     # again
-    python pushconfig.py bgp-unnumbered-ipv6 leaf01,leaf02,spine01,spine02,server01,server02
+    python pushconfig.py bgp-unnumbered-ipv6
     # this will reboot server01, so you'll need to log back in in terminal 2
 
 
@@ -86,7 +85,7 @@ Using a routing protocol such as BGP or OSPF means that as long as one spine is 
     vagrant ssh oob-mgmt-server
     sudo su - cumulus
     cd cldemo-config-routing
-    python pushconfig.py bgp-unnumbered leaf01,leaf02,spine01,spine02,server01,server02
+    python pushconfig.py bgp-unnumbered
 
 *In terminal 2*
 
@@ -105,7 +104,7 @@ Using a routing protocol such as BGP or OSPF means that as long as one spine is 
 
 *In terminal 1*
 
-    python pushconfig.py bgp-unnumbered spine01,spine02
+    python pushconfig.py bgp-unnumbered
     # watch Terminal 2, and pings will return
 
 
