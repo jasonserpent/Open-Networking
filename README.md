@@ -33,29 +33,6 @@ Quickstart: Run the demo
     ping 172.16.2.101
 
 
-Topology
---------
-This demo runs on a spine-leaf topology with two single-attached hosts. The helper script `push-config.py` requires an out-of-band management network that provides access to eth0 on all of the in-band devices.
-
-         +------------+       +------------+
-         | spine01    |       | spine02    |
-         |            |       |            |
-         +------------+       +------------+
-         swp1 |    swp2 \   / swp1    | swp2
-              |           X           |
-        swp51 |   swp52 /   \ swp51   | swp52
-         +------------+       +------------+
-         | leaf01     |       | leaf02     |
-         |            |       |            |
-         +------------+       +------------+
-         swp1 |                       | swp2
-              |                       |
-         eth1 |                       | eth2
-         +------------+       +------------+
-         | server01   |       | server02   |
-         |            |       |            |
-         +------------+       +------------+
-
 
 Using the Helper Script
 -----------------------
